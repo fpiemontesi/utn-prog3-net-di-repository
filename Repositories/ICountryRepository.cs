@@ -4,5 +4,6 @@ namespace DependencyInjection.Repositories;
 
 public interface ICountryRepository
 {
-    List<Country> GetAll();
+    Task<List<Country>> GetAllAsync();
+    Task<Country> CreateAsync(Country country);
 }

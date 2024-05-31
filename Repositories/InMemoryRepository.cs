@@ -11,8 +11,13 @@ public class InMemoryRepository : ICountryRepository
         new Country { Id = "3", Name = "Brasil" },
     };
 
-    public List<Country> GetAll()
+    public Task<Country> CreateAsync(Country country)
     {
-        return countries;
+        throw new NotImplementedException();
+    }
+
+    public Task<List<Country>> GetAllAsync()
+    {
+        return Task.FromResult(countries);
     }
 }

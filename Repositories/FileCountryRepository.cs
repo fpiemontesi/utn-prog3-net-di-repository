@@ -13,13 +13,18 @@ public class FileCountryRepository : ICountryRepository
         _webHostEnvironment = webHostEnvironment;
     }
 
-    public List<Country> GetAll()
+    public Task<Country> CreateAsync(Country country)
+    {
+        throw new NotImplementedException();
+    }
+
+    public async Task<List<Country>> GetAllAsync()
     {
         var basePath = _webHostEnvironment.ContentRootPath;
 
         var filePath = Path.Combine(basePath, "countries.json");
 
-        var countriesAsString = System.IO.File.ReadAllText(filePath);
+        var countriesAsString = await File.ReadAllTextAsync(filePath);
 
         var countries = JsonConvert.DeserializeObject<List<Country>>(countriesAsString);
 

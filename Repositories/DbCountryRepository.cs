@@ -13,8 +13,16 @@ public class DbCountryRepository : ICountryRepository
         _context = context;
     }
 
-    public List<Country> GetAll()
+    public async Task<Country> CreateAsync(Country country)
     {
-        return _context.Countries.ToList();
+        await _context.Countries.AddAsync(country);
+        await _context.SaveChangesAsync();
+
+        return country;
+    }
+
+    public Task<List<Country>> GetAllAsync()
+    {
+        return _context.Countries.ToListAsync();
     }
 }
